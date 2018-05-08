@@ -7,7 +7,7 @@ const ColorSlice = (color, i, array) => (
       className='circle gradient-slice'
       style={{
         backgroundColor: color,
-        transform: `rotate(${30 * (1+i)}deg)`,
+        transform: `rotate(${(360/array.length) * (1+i)}deg)`,
         zIndex: array.length - i
       }}>
     </div>

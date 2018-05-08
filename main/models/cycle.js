@@ -15,7 +15,6 @@ function start() {
     let gID = store.get('gID')
     const file = path.join(img_dir, `gradient-${counter}-${gID}.png`)
     wallpaper.set(file, {scale: 'fill'})
-      // .then((msg) => { console.log('Running cycle', counter, 'output', msg) })
       .catch(err => { console.log('Yikes!', err) })
 
     if (counter === 0 || counter === 23) {

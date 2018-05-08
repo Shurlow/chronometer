@@ -5,7 +5,7 @@ const path = require('path');
 const url = require('url');
 const isDevelopment = require('electron-is-dev');
 const controllers = require('./controllers')
-// global reference to mainWindow (necessary to prevent window from being garbage collected)
+
 let mainWindow
 
 function createMainWindow() {
@@ -18,7 +18,7 @@ function createMainWindow() {
   })
 
   if (isDevelopment) {
-    window.webContents.openDevTools()
+    // window.webContents.openDevTools()
   }
 
   if (isDevelopment) {

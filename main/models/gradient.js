@@ -5,11 +5,15 @@ const execAsPromise = promisify(exec)
 const fs = require('fs-extra')
 const path = require('path')
 const chroma = require('chroma-js')
-const wallpaper = require('wallpaper')
 const gm = require('gm')
 const uuid = require('uuid/v4')
+const isDevelopment = require('electron-is-dev');
+const Store = require('electron-store');
+const store = new Store();
 
-const img_dir = path.join(app.getPath('userData'), 'images')
+const app_path = app.getAppPath()
+const data_path = app.getPath('userData')
+const img_dir = path.join(data_path, 'images')
 
 function createGradient(colors) {
   const gID = uuid()
@@ -18,23 +22,30 @@ function createGradient(colors) {
       .domain([0, 1])
       .mode('lch')
 
-  const cmd = path.join(app.getAppPath(), 'main', 'set_wallpaper')
+  // TODO: Why is app.getAppPath() diff in prod? simple workaround here...
+  let cmd = isDevelopment ? path.join(app_path, 'set_wallpaper') : path.join(app_path, '..', 'set_wallpaper')
+  console.log(cmd, data_path);
   const env = {
-    IMG_DIR: img_dir,
-    GID: gID,
+    DATA_PATH: data_path,
     PATH: process.env.PATH
   }
 
   return clearImages()
     .then(createGradientSeries(colorScale, gID))
-    .then(execAsPromise(cmd, {env}))
-    .then(() => ({ gID, colors }))
+    .then(() => {
+      store.set({ gID, colors })
+      return execAsPromise(cmd, {env})
+    })
+    .then((thing) => {
+      console.log('here?', thing);
+    })
+    // .then(() => ({ gID, colors }))
     .catch(console.error)
 }
 
 function createGradientSeries(colorScale, gID) {
   const pendingImages = []
-  for (var i = 0; i < 24; i++) {
+  for (let i = 0; i < 24; i++) {
     const step = hourRange(i)
     const colors = {
       start: colorScale(step).hex(),
@@ -56,12 +67,16 @@ function saveGradientImage(colors, hour, gID) {
     .then(() => `saving wallpaper: ${imgPath}`)
 }
 
+function getSavedColors() {
+  return store.get('colors')
+}
+
 function clearImages() {
   return fs.emptyDir(img_dir)
 }
 
 function hourRange(x) {
-	return 0.5 * Math.cos( (2*Math.PI/24) * x + Math.PI) + 0.5
+	return 0.5 * Math.cos( ( 2 * Math.PI / 24 ) * x + Math.PI ) + 0.5
 }
 
-module.exports = { createGradient }
+module.exports = { createGradient, getSavedColors }

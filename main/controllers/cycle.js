@@ -13,3 +13,7 @@ ipcMain.on('start-cycle', (event) => {
 ipcMain.on('stop-cycle', (event) => {
   cycleModel.stop(cycle)
 })
+
+ipcMain.on('sync-cycle', (event) => {
+  event.sender.send('sync-cycle-reply', { cycle: !!cycle })
+})

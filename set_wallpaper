@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const path = require('path')
+const wallpaper = require('wallpaper')
+const date = new Date()
+const hour = date.getHours()
+
+const config_path = path.join(process.env.DATA_PATH, `config.json`)
+const config = JSON.parse(fs.readFileSync(config_path))
+const image_file = path.join(process.env.DATA_PATH, 'images', `gradient-${hour}-${config.gID}.png`)
+
+wallpaper.set(image_file, { scale: 'fill' })
+  .then(() => {
+    console.log('Set wallpaper:', image_file, '| time:', date.toTimeString().substring(0, 8));
+  })
+  .catch(console.error)

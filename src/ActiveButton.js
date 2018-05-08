@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Radio } from 'semantic-ui-react'
 const { ipcRenderer } = window.require('electron')
 
 class ActiveButton extends Component {
@@ -10,14 +10,14 @@ class ActiveButton extends Component {
     }
   }
 
+  toggleActive = () => this.setState({ active: !this.state.active })
+
   componentWillMount() {
-    ipcRenderer.send('sync-state-background')
-    ipcRenderer.on('sync-reply', (event, data) => {
+    ipcRenderer.send('sync-background')
+    ipcRenderer.on('sync-background-reply', (event, data) => {
       this.setState({ active: data.active })
     })
   }
-
-  toggleActive = () => this.setState({ active: !this.state.active })
 
   startBackground = () => {
     ipcRenderer.send('start-background')
@@ -33,9 +33,11 @@ class ActiveButton extends Component {
     const { active } = this.state
     return (
       <div>
-        <Button
-          active={active}
-          content={active ? 'On' : 'Off'}
+        <Radio
+          floated='right'
+          toggle
+          checked={active}
+          label='Schedule background'
           onClick={active ? this.stopBackground : this.startBackground}
         />
       </div>

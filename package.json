@@ -13,6 +13,7 @@
       "main/**/*",
       "node_modules/**/*"
     ],
+    "extraResources": "./set_wallpaper",
     "extraMetadata": {
       "main": "main/index.js"
     },

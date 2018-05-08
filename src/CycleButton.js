@@ -12,6 +12,13 @@ class CycleButton extends Component {
 
   toggleCycle = () => this.setState({ isRunning: !this.state.isRunning })
 
+  componentWillMount() {
+    ipcRenderer.send('sync-cycle')
+    ipcRenderer.on('sync-cycle-reply', (event, data) => {
+      this.setState({ isRunning: data.cycle })
+    })
+  }
+
   startCycle = () => {
     ipcRenderer.send('start-cycle')
     this.toggleCycle()

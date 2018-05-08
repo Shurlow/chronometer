@@ -6,29 +6,36 @@ const { exec } = require('child_process')
 const execAsPromise = promisify(exec)
 const writeFilePromise = promisify(fs.writeFile)
 const plist = require('plist')
+const isDevelopment = require('electron-is-dev');
 const Store = require('electron-store');
 const store = new Store();
 
 const app_path = app.getAppPath()
 const home_path = app.getPath('home')
 const data_path = app.getPath('userData')
+const logs_path = app.getPath('logs')
 const output_path = `${home_path}/Library/LaunchAgents/com.chronometer.background.plist`
 
 function setLaunchAgent() {
+  let cmd = isDevelopment ? path.join(app.getAppPath(), 'set_wallpaper') : path.join(app.getAppPath(), '..', 'set_wallpaper')
+
   const config = {
     Label: 'com.chronometer.background',
-    Program: path.join(app_path, 'main', 'set_wallpaper'),
+    Program: cmd,
     EnvironmentVariables: {
      PATH: '/bin:/usr/bin:/usr/local/bin',
-     IMG_DIR: path.join(data_path, 'images'),
-     GID: store.get('gID')
+     DATA_PATH: data_path,
+     // GID: store.get('gID')
     },
     // WorkingDirectory: path.join(app_path, 'main'),
-    StandardOutPath: path.join(app_path, 'logs', 'launch.log'),
-    StandardErrorPath: path.join(app_path, 'logs', 'error.log'),
+    StandardOutPath: path.join(logs_path, 'launch.log'),
+    StandardErrorPath: path.join(logs_path, 'error.log'),
     RunAtLoad: true,
-    StartInterval: 60,
-    KeepAlive: true,
+    StartInterval: 4000,
+    StartCalendarInterval: {
+      Minute: 0
+    }
+    // KeepAlive: true,
   }
 
   const file = plist.build(config)
@@ -41,7 +48,7 @@ function removeLaunchAgent() {
 
 function start() {
   return setLaunchAgent()
-    .then(execAsPromise(`launchctl load ${output_path}`))
+    .then(execAsPromise(`launchctl load -F ${output_path}`))
     .catch(console.error)
 }
 

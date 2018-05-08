@@ -12,15 +12,10 @@ class App extends Component {
     return (
       <Container className="App">
         <Header as='h1'>Chronometer</Header>
-        <Icon name='sun' />
-        <ColorPicker />
-        <Icon name='moon' />
         <ActiveButton/>
-        {/* {
-          this.state.active
-            ? <Button negative content='Pause' icon='pause' labelPosition='left' onClick={this.stopCycle}/>
-            : <Button primary content='Play' icon='play' labelPosition='left' onClick={this.startCycle}/>
-        } */}
+        {/* <Icon name='sun' /> */}
+        <ColorPicker />
+        {/* <Icon name='moon' /> */}
         <Divider horizontal>
           <CycleButton />
         </Divider>
