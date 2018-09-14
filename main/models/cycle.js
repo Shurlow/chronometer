@@ -17,7 +17,7 @@ function start() {
     wallpaper.set(file, {scale: 'fill'})
       .catch(err => { console.log('Yikes!', err) })
 
-    if (counter === 0 || counter === 23) {
+    if (counter === 0 || counter === 47) {
       flip = !flip
     }
 

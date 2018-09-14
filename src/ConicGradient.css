@@ -1,47 +1,35 @@
 .circle {
+  font-size: 150px;
   content: "";
   position: absolute;
   border-radius: 50%;
-  width: 15em;
-  height: 15em;
+  width: 1em;
+  height: 1em;
 }
 
 .blur {
-  filter: blur(0.4em);
+  filter: blur(0.02em);
 }
 
 .gradient-container {
   position: relative;
   overflow: hidden;
-  font-size: 16px;
   margin: auto;
 }
 
 .gradient-clip {
-  /* content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 15em;
-  height: 15em; */
-  left: calc(50% - 7.5em);
-  top: calc(50% - 7.5em);
-  clip: rect(0, 15em, 15em, 7.5em);
+  top: calc(50% - 0.5em);
+  clip: rect(0, 1em, 1em, 7.5em);
 }
 
 .gradient-slice {
-  /* content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 15em;
-  height: 15em; */
-  /* clip: rect(0, 7.5em, 15em, 0); */
   transform: rotate(45deg);
 }
 
 .gradient-clip, .gradient-slice:nth-child(n+25) {
-  clip: rect(0, 15em, 15em, 7.5em);
+  clip: rect(0, 1em, 1em, 0.5em);
 }
 
 .gradient-slice, .gradient-clip:nth-child(n+25) {
-  clip: rect(0, 7.5em, 15em, 0);
+  clip: rect(0, 0.5em, 1em, 0);
 }

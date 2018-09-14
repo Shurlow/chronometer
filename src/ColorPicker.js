@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
-import { CompactPicker } from 'react-color'
+import { TwitterPicker } from 'react-color'
 import ConicGradient from './ConicGradient'
 import chroma from 'chroma-js'
 
@@ -12,60 +11,62 @@ class ColorPicker extends Component {
     this.state = {
       startColor: '#ffffff',
       endColor: '#000000',
-      saved: false
+      startColorOpen: false,
+      endColorOpen: false
     }
   }
 
-  saveStartColor = (color, event) => this.setState({startColor: color.hex, saved: false})
-  saveEndColor = (color, event) => this.setState({endColor: color.hex, saved: false})
+  saveStartColor = (color, event) => {
+    this.setState({ startColor: color.hex })
+    ipcRenderer.send('save-gradient', [color.hex, this.state.endColor])
+  }
+  saveEndColor = (color, event) => {
+    this.setState({ endColor: color.hex })
+    ipcRenderer.send('save-gradient', [this.state.startColor, color.hex])
+  }
+
+  toggleStartPallet = () => this.setState({ startColorOpen: !this.state.startColorOpen, endColorOpen: false })
+  toggleEndPallet = () => this.setState({ endColorOpen: !this.state.endColorOpen, startColorOpen: false })
 
   componentWillMount() {
     ipcRenderer.send('sync-gradient')
-
     ipcRenderer.on('sync-gradient-reply', (event, data) => {
-      if (data.colors && data.colors[0] === this.state.startColor && data.colors[1] === this.state.endColor) {
-        return this.setState({ saved: true })
-      }
-
-      this.setState({
-        startColor: data.colors[0],
-        endColor: data.colors[1]
-      })
-
+      this.setState({ startColor: data.colors[0], endColor: data.colors[1] })
     })
   }
 
-  saveColors = () => {
-    const { startColor, endColor } = this.state
-    ipcRenderer.send('save-gradient', [startColor, endColor])
-  }
-
   render() {
-    const { startColor, endColor, saved } = this.state
+    const { startColor, endColor, startColorOpen, endColorOpen } = this.state
     const scale = chroma.scale([startColor, endColor])
         .mode('lch')
 
-    // const colors = scale.colors(24)
     const colorsHalf = scale.colors(24)
     const colors = [...colorsHalf, ...colorsHalf.reverse()]
 
-    const icon = saved ? 'checkmark' :'save'
-
     return (
       <div className='color-picker'>
-        <ConicGradient colors={colors}/>
-        <CompactPicker color={endColor} onChange={this.saveEndColor}/>
-        <CompactPicker color={startColor} onChange={this.saveStartColor}/>
-        <Button
-          content={saved ? "Saved" : 'Save'}
-          active={saved}
-          toggle
-          icon={icon}
-          labelPosition='left'
-          onClick={this.saveColors}
-        />
+        <div className="gradient-with-icons">
+          <div className='icon-picker'>
+            <img
+              className="sun"
+              src="sun_custom.svg"
+              alt="sun by Nanda Ririz from the Noun Project"
+              onClick={this.toggleStartPallet}
+            />
+            { startColorOpen && <TwitterPicker color={endColor} onChange={this.saveEndColor}/> }
+          </div>
+          <ConicGradient colors={colors}/>
+          <div className='icon-picker picker-right'>
+            <img
+              className="moon"
+              src="moon_custom.svg"
+              alt="crescent moon by Nanda Ririz from the Noun Project"
+              onClick={this.toggleEndPallet}
+            />
+            { endColorOpen && <TwitterPicker className='picker-right' color={startColor} onChange={this.saveStartColor} triangle='top-right' /> }
+          </div>
+        </div>
       </div>
-
     )
   }
 }

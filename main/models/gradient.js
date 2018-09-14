@@ -22,9 +22,9 @@ function createGradient(colors) {
       .domain([0, 1])
       .mode('lch')
 
-  // TODO: Why is app.getAppPath() diff in prod? simple workaround here...
+  // app.getAppPath() is different in prod? simple workaround here...
   let cmd = isDevelopment ? path.join(app_path, 'set_wallpaper') : path.join(app_path, '..', 'set_wallpaper')
-  console.log(cmd, data_path);
+
   const env = {
     DATA_PATH: data_path,
     PATH: process.env.PATH
@@ -32,20 +32,14 @@ function createGradient(colors) {
 
   return clearImages()
     .then(createGradientSeries(colorScale, gID))
-    .then(() => {
-      store.set({ gID, colors })
-      return execAsPromise(cmd, {env})
-    })
-    .then((thing) => {
-      console.log('here?', thing);
-    })
-    // .then(() => ({ gID, colors }))
+    .then(() => store.set({ gID, colors }))
+    .then(() => execAsPromise(cmd, {env}))
     .catch(console.error)
 }
 
 function createGradientSeries(colorScale, gID) {
   const pendingImages = []
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < 48; i++) {
     const step = hourRange(i)
     const colors = {
       start: colorScale(step).hex(),
@@ -76,7 +70,7 @@ function clearImages() {
 }
 
 function hourRange(x) {
-	return 0.5 * Math.cos( ( 2 * Math.PI / 24 ) * x + Math.PI ) + 0.5
+	return 0.5 * Math.cos( ( 2 * Math.PI / 48 ) * x + Math.PI ) + 0.5
 }
 
 module.exports = { createGradient, getSavedColors }

@@ -2,3 +2,51 @@
   margin: 0;
   padding: 2em;
 }
+
+#root, .App {
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+nav h1.ui.header {
+  margin-bottom: 0;
+}
+
+.color-picker {
+  height: calc(100% - 96px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.gradient-with-icons {
+  display: flex;
+  align-items: center;
+}
+
+.sun, .moon {
+  width: 40px;
+}
+
+.icon-picker {
+  position: relative;
+}
+
+.picker-right {
+  right: 0;
+}
+
+.twitter-picker {
+  position: absolute !important;
+  z-index: 2;
+}
+
+.moon, .sun {
+  cursor: pointer;
+}

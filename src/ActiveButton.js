@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Radio } from 'semantic-ui-react'
+import { Radio } from 'semantic-ui-react'
 const { ipcRenderer } = window.require('electron')
 
 class ActiveButton extends Component {
@@ -37,7 +37,7 @@ class ActiveButton extends Component {
           floated='right'
           toggle
           checked={active}
-          label='Schedule background'
+          label='Update hourly'
           onClick={active ? this.stopBackground : this.startBackground}
         />
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Divider, Icon } from 'semantic-ui-react'
+import { Container, Header, Divider } from 'semantic-ui-react'
 import CycleButton from './CycleButton'
 import ActiveButton from './ActiveButton'
 import ColorPicker from './ColorPicker'
@@ -11,11 +11,11 @@ class App extends Component {
   render() {
     return (
       <Container className="App">
-        <Header as='h1'>Chronometer</Header>
-        <ActiveButton/>
-        {/* <Icon name='sun' /> */}
+        <nav>
+          <Header as='h1'>Chronometer</Header>
+          <ActiveButton/>
+        </nav>
         <ColorPicker />
-        {/* <Icon name='moon' /> */}
         <Divider horizontal>
           <CycleButton />
         </Divider>
