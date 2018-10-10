@@ -6,7 +6,7 @@ class CycleButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isRunning: false
+      isRunning: false,
     }
   }
 
@@ -21,7 +21,7 @@ class CycleButton extends Component {
 
   startCycle = () => {
     ipcRenderer.send('start-cycle')
-    this.toggleCycle()
+    this.setState({ isRunning: true })
   }
 
   stopCycle = () => {
@@ -30,6 +30,7 @@ class CycleButton extends Component {
   }
 
   render() {
+    console.log('Cylce?', this.state.isRunning)    
     return (
       <div>
         {

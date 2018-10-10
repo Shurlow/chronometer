@@ -15,3 +15,4 @@ wallpaper.set(image_file, { scale: 'fill' })
     console.log('Set wallpaper:', image_file, '| time:', date.toTimeString().substring(0, 8));
   })
   .catch(console.error)
+

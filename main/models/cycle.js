@@ -9,7 +9,6 @@ const store = new Store();
 function start() {
   let counter = 0
   let flip = false
-  console.log('running cycle...');
 
   return setInterval(() => {
     let gID = store.get('gID')
@@ -17,7 +16,7 @@ function start() {
     wallpaper.set(file, {scale: 'fill'})
       .catch(err => { console.log('Yikes!', err) })
 
-    if (counter === 0 || counter === 47) {
+    if (counter === 0 || counter === 23) {
       flip = !flip
     }
 
@@ -29,7 +28,6 @@ function start() {
 
 function stop(intervalID) {
   clearInterval(intervalID)
-  console.log('cycle stopped');
 }
 
 module.exports = {

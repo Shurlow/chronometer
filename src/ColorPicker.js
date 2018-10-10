@@ -16,6 +16,13 @@ class ColorPicker extends Component {
     }
   }
 
+  componentWillMount() {
+    ipcRenderer.send('sync-gradient')
+    ipcRenderer.on('sync-gradient-reply', (event, data) => {
+      this.setState({ startColor: data.colors[0], endColor: data.colors[1] })
+    })
+  }
+
   saveStartColor = (color, event) => {
     this.setState({ startColor: color.hex })
     ipcRenderer.send('save-gradient', [color.hex, this.state.endColor])
@@ -25,15 +32,17 @@ class ColorPicker extends Component {
     ipcRenderer.send('save-gradient', [this.state.startColor, color.hex])
   }
 
-  toggleStartPallet = () => this.setState({ startColorOpen: !this.state.startColorOpen, endColorOpen: false })
-  toggleEndPallet = () => this.setState({ endColorOpen: !this.state.endColorOpen, startColorOpen: false })
-
-  componentWillMount() {
-    ipcRenderer.send('sync-gradient')
-    ipcRenderer.on('sync-gradient-reply', (event, data) => {
-      this.setState({ startColor: data.colors[0], endColor: data.colors[1] })
-    })
+  toggleStartPallet = (e) => {    
+    e.stopPropagation()
+    this.setState({ startColorOpen: !this.state.startColorOpen, endColorOpen: false })
   }
+
+  toggleEndPallet = (e) => {
+    e.stopPropagation()
+    this.setState({ endColorOpen: !this.state.endColorOpen, startColorOpen: false })
+  }
+
+  closePallets = (e) => this.setState({ startColorOpen: false, endColorOpen: false })
 
   render() {
     const { startColor, endColor, startColorOpen, endColorOpen } = this.state
@@ -44,7 +53,7 @@ class ColorPicker extends Component {
     const colors = [...colorsHalf, ...colorsHalf.reverse()]
 
     return (
-      <div className='color-picker'>
+      <div className='color-picker' onClick={this.closePallets}>
         <div className="gradient-with-icons">
           <div className='icon-picker'>
             <img

@@ -7,10 +7,7 @@ const execAsPromise = promisify(exec)
 const writeFilePromise = promisify(fs.writeFile)
 const plist = require('plist')
 const isDevelopment = require('electron-is-dev');
-const Store = require('electron-store');
-const store = new Store();
 
-const app_path = app.getAppPath()
 const home_path = app.getPath('home')
 const data_path = app.getPath('userData')
 const logs_path = app.getPath('logs')
@@ -25,7 +22,6 @@ function setLaunchAgent() {
     EnvironmentVariables: {
      PATH: '/bin:/usr/bin:/usr/local/bin',
      DATA_PATH: data_path,
-     // GID: store.get('gID')
     },
     // WorkingDirectory: path.join(app_path, 'main'),
     StandardOutPath: path.join(logs_path, 'launch.log'),
