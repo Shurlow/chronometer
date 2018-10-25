@@ -10,12 +10,13 @@ const ColorSlice = (color, i, array) => (
         transform: `rotate(${(360/array.length) * (1+i)}deg)`,
         zIndex: array.length - i
       }}>
+        {/* <span style={{ transform: `translate(${(360 / array.length) * (1 + i)}deg)` }}>{i}</span> */}
     </div>
   </div>
 )
 
 const ConicGradient = ({ colors }) => (
-  <div className='circle gradient-container'>
+  <div className='circle'>
     <div className='blur'>
       { colors.map(ColorSlice) }
     </div>

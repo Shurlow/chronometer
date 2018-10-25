@@ -12,7 +12,7 @@ const image_file = path.join(process.env.DATA_PATH, 'images', `gradient-${hour}-
 
 wallpaper.set(image_file, { scale: 'fill' })
   .then(() => {
-    console.log('Set wallpaper:', image_file, '| time:', date.toTimeString().substring(0, 8));
+    console.log('Set wallpaper:', image_file, '| time:', date.toString());
   })
   .catch(console.error)
 

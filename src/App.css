@@ -1,52 +1,52 @@
 .App {
   margin: 0;
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #root, .App {
-  height: 100%;
+  height: 100vh;
+}
+
+
+nav, footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 nav {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 1em;
 }
 
-nav h1.ui.header {
-  margin-bottom: 0;
+#about:hover {
+  border: .125rem solid black;
 }
 
-.color-picker {
-  height: calc(100% - 96px);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+#about svg {
+  width: 16px;
 }
 
-.gradient-with-icons {
+footer {
+  justify-content: flex-end;
+}
+
+button {
+  outline: none;
+}
+
+.controls {
   display: flex;
   align-items: center;
 }
 
-.sun, .moon {
-  width: 40px;
-}
-
-.icon-picker {
-  position: relative;
-}
-
-.picker-right {
-  right: 0;
-}
-
-.twitter-picker {
-  position: absolute !important;
-  z-index: 2;
-}
-
-.moon, .sun {
-  cursor: pointer;
+.veil {
+  background: rgba(20,20,20, 0.1);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

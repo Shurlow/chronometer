@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="MorphSVGPlugin.js"></script>
+  <script src="TweenLite.js"></script>
+  <script defer src="index.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,700" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
@@ -11,9 +15,38 @@
 <body>
 
   <main class="container mx-auto">
-    <div class="big-box">
-      <h1 class="title">Nabla</h1>
-    </div>
+    <!-- <div class="big-box">
+      <h1 class="title">Sundial</h1>
+    </div> -->
+
+    <!-- <div id="gradient"></div> -->
+    <!-- <img id="gradient" src="circle_gradient.svg" alt=""> -->
+
+    <svg id="circle-container" width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+          <stop stop-color="#0693E3" offset="0%"></stop>
+          <stop stop-color="#EB144C" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <g stroke-width="2" stroke="url(#linearGradient-1)" fill="none">
+        <path id='circle' d="M 100 100 m -90, 0 a 80,80 0 1,0 180,0 a 80,80 0 1,0 -180,0"></path>
+      </g>
+    </svg>
+
+    <svg id="square-container" width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+          <stop stop-color="#0693E3" offset="0%"></stop>
+          <stop stop-color="#EB144C" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <g stroke-width="2" stroke="url(#linearGradient-1)" fill="none">
+        <path id='square' d="M 10 10 H 190 V 190 H 10 V 10 Z"></path>
+      </g>
+    </svg>
+    
   </main>
   
 </body>

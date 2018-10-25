@@ -3,37 +3,33 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'EB Garamond', serif;
 }
 
 .title {
-  font-family: serif;
-  font-size: 40px;
+  font-size: 60px;
+  font-weight: 400;
   position: absolute;
   background: white;
-  right: -38px;
+  right: -75px;
   bottom: 1em;
   padding: 0.25em;
 }
 
 .big-box {
-  /* border: 3px solid black; */
   height: 50%;
   width: 50%;
   position: relative;
 
   border-width: 3px;
   border-style: solid;
-  /* -webkit-border-image:  */
-    /* -webkit-gradient(linear, 0 0, 0 100%, from#0693e3, t(eb144c)) 1 100%;
-  -webkit-border-image: 
-    -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-  -moz-border-image:
-    -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
-  -o-border-image:
-    -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%; */
   border-image: linear-gradient(to bottom, #0693e3, #eb144c) round;
-  border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
-  border-image-width: 30px 48px;
-  /* border-image: */
-    /* linear-gradient(to bottom, #0693e3, #eb144c) 1 100%; */
+  border-image-slice: 1;
+  border-image-width: 4px;
+  animation: cycle 1s infinite;
+}
+
+#circle-container {
+  /* visibility: hidden; */
+  /* display: none; */
 }

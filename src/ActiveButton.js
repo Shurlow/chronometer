@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Radio } from 'semantic-ui-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 const { ipcRenderer } = window.require('electron')
 
 class ActiveButton extends Component {
@@ -10,7 +11,18 @@ class ActiveButton extends Component {
     }
   }
 
-  toggleActive = () => this.setState({ active: !this.state.active })
+  toggleActive = () => {
+    const { active } = this.state
+    console.log('Active', active);
+    
+    if(active) {
+      this.stopBackground()
+    } else {
+      this.startBackground()
+    }
+
+    this.setState({ active: !active })
+  }
 
   componentWillMount() {
     ipcRenderer.send('sync-background')
@@ -21,27 +33,21 @@ class ActiveButton extends Component {
 
   startBackground = () => {
     ipcRenderer.send('start-background')
-    this.toggleActive()
   }
 
   stopBackground = () => {
     ipcRenderer.send('stop-background')
-    this.toggleActive()
   }
 
   render() {
     const { active } = this.state
-    return (
-      <div>
-        <Radio
-          floated='right'
-          toggle
-          checked={active}
-          label='Update hourly'
-          onClick={active ? this.stopBackground : this.startBackground}
-        />
-      </div>
+    const radioStyle = "ma2 tc br1 pa2 b--black inline-flex items-center pointer bn"
 
+    return (
+      <button className={radioStyle} onClick={this.toggleActive}>
+        <span className="ma1">Clock Sync:</span>
+        <FontAwesomeIcon className="shadow-hover" icon={active ? faToggleOn : faToggleOff} size="lg" />
+      </button>
     )
   }
 }

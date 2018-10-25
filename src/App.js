@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import { Container, Header, Divider } from 'semantic-ui-react'
-import CycleButton from './CycleButton'
-import ActiveButton from './ActiveButton'
-import ColorPicker from './ColorPicker'
+import GradientButton from './GradientButton'
+import Controls from './Controls'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
-import 'semantic-ui-css/semantic.min.css';
+import 'tachyons'
 import './App.css'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
+    const buttonStyle = ' ma2 tc pa2 shadow-hover inline-flex items-center pointer ba b--white bw1 br-100'
+
     return (
-      <Container className="App">
+      <div className='App athelas'>
         <nav>
-          <Header as='h1'>Chronometer</Header>
-          <ActiveButton/>
+          <h1 className='ma0'>Sundial</h1>
+          <button className={buttonStyle} id='about'>
+            <FontAwesomeIcon icon={faInfo} />
+          </button>
         </nav>
-        <ColorPicker />
-        <Divider horizontal>
-          <CycleButton />
-        </Divider>
-      </Container>
+        <GradientButton />
+        <footer>
+          <Controls />
+        </footer>
+      </div>
     );
   }
 }
