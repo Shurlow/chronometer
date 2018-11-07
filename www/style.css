@@ -1,32 +1,52 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(45deg, #f78da7 0%, #fcb900 100%);
+}
+
 main {
-  height: 100vh;
+  font-family: 'EB Garamond', serif;
+  margin: 3em;
+  color: white;
+  border: 2px solid white;
+  height: 100%;
+}
+
+section.top {
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'EB Garamond', serif;
 }
 
 .title {
   font-size: 60px;
   font-weight: 400;
-  position: absolute;
-  background: white;
-  right: -75px;
-  bottom: 1em;
-  padding: 0.25em;
+  /* width: 0; */
 }
 
 .big-box {
-  height: 50%;
-  width: 50%;
-  position: relative;
-
+  height: 15rem;
+  width: 15rem;
+  margin: 1em;
+  /* position: relative; */
+/* 
   border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to bottom, #0693e3, #eb144c) round;
+  border-image: linear-gradient(to bottom, #f78da7, #fcb900) round;
   border-image-slice: 1;
   border-image-width: 4px;
-  animation: cycle 1s infinite;
+  animation: cycle 1s infinite; */
+
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 15em;
+  background-image: linear-gradient(45deg, #f78da7 0%, #fcb900 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
 }
 
 #circle-container {

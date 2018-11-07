@@ -41,7 +41,7 @@ class ActiveButton extends Component {
 
   render() {
     const { active } = this.state
-    const radioStyle = "ma2 tc br1 pa2 b--black inline-flex items-center pointer bn"
+    const radioStyle = "ma2 tc br1 pa2 b--black inline-flex items-center pointer bn shadow-hover"
 
     return (
       <button className={radioStyle} onClick={this.toggleActive}>
