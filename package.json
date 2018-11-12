@@ -1,13 +1,13 @@
 {
   "author": "shurlow",
-  "name": "chronometer",
+  "name": "sundial",
   "description": "color | time",
   "version": "0.1.0",
   "private": true,
   "main": "main/index.js",
   "homepage": "./",
   "build": {
-    "appId": "com.electron.chronometer",
+    "appId": "com.electron.sundial",
     "files": [
       "build/**/*",
       "main/**/*",
