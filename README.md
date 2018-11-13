@@ -1,6 +1,6 @@
-# Chronometer
+# Chronometer (Sundial)
 
-Turn your background into a clock
+Turn your desktop background into a clock, like a sundial. Choose two colors and let Chronometer cycle between the color gradients throughout the day.
 
 ### Build
 
