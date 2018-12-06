@@ -2,20 +2,11 @@ html {
   height: 100%;
 }
 
-body {
-  background: linear-gradient(45deg, #f78da7 0%, #fcb900 100%);
-}
-
 main {
   font-family: 'EB Garamond', serif;
-  margin: 3em;
-  color: white;
-  border: 2px solid white;
-  height: 100%;
 }
 
 section.top {
-  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,21 +15,12 @@ section.top {
 .title {
   font-size: 60px;
   font-weight: 400;
-  /* width: 0; */
 }
 
 .big-box {
-  height: 15rem;
-  width: 15rem;
+ height: 500px;
+  width: 500px;
   margin: 1em;
-  /* position: relative; */
-/* 
-  border-width: 3px;
-  border-style: solid;
-  border-image: linear-gradient(to bottom, #f78da7, #fcb900) round;
-  border-image-slice: 1;
-  border-image-width: 4px;
-  animation: cycle 1s infinite; */
 
   padding: 5px 10px;
   border: 1px solid transparent;
@@ -47,6 +29,10 @@ section.top {
   background-origin: border-box;
   background-clip: padding-box, border-box;
 
+}
+
+.gradient {
+  background: linear-gradient(45deg, #f78da7 0%, #fcb900 100%);
 }
 
 #circle-container {
