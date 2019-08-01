@@ -41,12 +41,12 @@ class Controls extends Component {
   render() {
     const { isRunning } = this.state
     const activeStyle = isRunning ? "bg-black white" : ""
-    const buttonStyle = "ba bw1 ma2 tc br1 pa2 b--black shadow-hover inline-flex items-center pointer " + activeStyle
+    const buttonStyle = "ba bw1 tc br1 pa2 b--black shadow-hover inline-flex items-center pointer "
 
     return (
       <div className='controls'>
         <ActiveButton/>
-        <button className={buttonStyle} onClick={this.toggleCycle}>
+        <button className={buttonStyle + activeStyle} onClick={this.toggleCycle}>
           { isRunning
             ? <FontAwesomeIcon icon={faCircleNotch} className="fa-spin" />
             : <FontAwesomeIcon icon={faRedo} />

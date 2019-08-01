@@ -12,10 +12,10 @@ function createMainWindow() {
   const window = new BrowserWindow({
     x: 0,
     y: 0,
-    width: 420,
-    height: 420,
-    minWidth: 410,
-    minHeight: 350,
+    width: 400,
+    height: 400,
+    minWidth: 400,
+    minHeight: 400,
     // useContentSize: true,
     // backgroundColor: '#000000',
   })

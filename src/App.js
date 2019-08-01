@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = ' ma2 tc pa2 shadow-hover inline-flex items-center pointer ba b--white bw1 br-100'
+    const buttonStyle = 'tc shadow-hover inline-flex items-center pointer ba b--white bw1 br-100'
 
     return (
       <div className='App athelas'>

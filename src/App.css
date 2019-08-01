@@ -12,13 +12,20 @@
 
 
 nav, footer {
-  height: 50px;
+  /* height: 50px; */
   display: flex;
+}
+
+footer {
   align-items: center;
 }
 
 nav {
   justify-content: space-between;
+}
+
+#about {
+  padding: 8px;
 }
 
 #about:hover {
@@ -40,6 +47,10 @@ button {
 .controls {
   display: flex;
   align-items: center;
+}
+
+#active-button {
+  height: 36px;
 }
 
 .veil {

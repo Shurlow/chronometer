@@ -1,8 +1,8 @@
 {
   "author": "shurlow",
   "name": "sundial",
-  "description": "color | time",
-  "version": "0.1.0",
+  "description": "color + time",
+  "version": "1.0.0",
   "private": true,
   "main": "main/index.js",
   "homepage": "./",

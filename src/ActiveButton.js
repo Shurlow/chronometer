@@ -13,7 +13,7 @@ class ActiveButton extends Component {
 
   toggleActive = () => {
     const { active } = this.state
-    console.log('Active', active);
+    // console.log('Active', active);
     
     if(active) {
       this.stopBackground()
@@ -41,11 +41,11 @@ class ActiveButton extends Component {
 
   render() {
     const { active } = this.state
-    const radioStyle = "ma2 tc br1 pa2 b--black inline-flex items-center pointer bn shadow-hover"
+    const radioStyle = "tc br1 mr2 b--black inline-flex items-center pointer bn shadow-hover"
 
     return (
-      <button className={radioStyle} onClick={this.toggleActive}>
-        <span className="ma1">Clock Sync:</span>
+      <button id="active-button" className={radioStyle} onClick={this.toggleActive}>
+        <span className="ma1">Clock Sync </span>
         <FontAwesomeIcon className="shadow-hover" icon={active ? faToggleOn : faToggleOff} size="lg" />
       </button>
     )

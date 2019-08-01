@@ -27,6 +27,7 @@ class ColorPicker extends Component {
     this.setState({ startColor: color.hex })
     ipcRenderer.send('save-gradient', [color.hex, this.state.endColor])
   }
+  
   saveEndColor = (color, event) => {
     this.setState({ endColor: color.hex })
     ipcRenderer.send('save-gradient', [this.state.startColor, color.hex])
