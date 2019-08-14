@@ -58,10 +58,22 @@ class ColorPicker extends Component {
         {startPalletOpen && <TwitterPicker className="start-pallet" onChange={this.saveStartColor} />}
         {endPalletOpen && <TwitterPicker className="end-pallet" onChange={this.saveEndColor}/>}
         {(startPalletOpen || endPalletOpen) && <div className="veil" onClick={this.closePallets}></div>}
+        {/* <img
+          className="moon"
+          src="moon_custom.svg"
+          alt="crescent moon by Nanda Ririz from the Noun Project"
+          onClick={this.toggleEndPallet}
+        /> */}
         <div className='circle' style={{ background: `linear-gradient(45deg, ${startColor}, ${endColor})` }}>
           <div className='click-slice-top' onClick={this.toggleStartPallet}></div>
           <div className='click-slice-bottom' onClick={this.toggleEndPallet}></div>
         </div>
+        {/* <img
+          className="sun"
+          src="sun_custom.svg"
+          alt="sun by Nanda Ririz from the Noun Project"
+          onClick={this.toggleStartPallet}
+        /> */}
       </div>
     )
   }

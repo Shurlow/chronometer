@@ -30,7 +30,7 @@ class CycleButton extends Component {
   }
 
   render() {
-    console.log('Cylce?', this.state.isRunning)    
+    // console.log('Cylce?', this.state.isRunning)
     return (
       <div>
         {
