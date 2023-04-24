@@ -28,7 +28,7 @@
     "concurrently": "^4.0.1",
     "electron": "^3.0.3",
     "electron-builder": "^20.10.0",
-    "react-scripts": "^2.0.4",
+    "react-scripts": "^5.0.1",
     "tachyons": "^4.10.0",
     "wait-on": "^3.1.0"
   },
